@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 21, 2020 at 12:12 PM
+-- Generation Time: Sep 21, 2020 at 12:44 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -95,7 +95,7 @@ CREATE TABLE `tbl_guru` (
   `pendidikan` int(11) NOT NULL,
   `telp` varchar(64) NOT NULL,
   `alamat` varchar(256) NOT NULL,
-  `walikelas` int(11) NOT NULL,
+  `walikelas` int(11) NOT NULL DEFAULT 9,
   `statusguru` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -105,7 +105,10 @@ CREATE TABLE `tbl_guru` (
 
 INSERT INTO `tbl_guru` (`id_guru`, `nisp`, `nama_guru`, `ttl`, `jenkel`, `agama`, `pendidikan`, `telp`, `alamat`, `walikelas`, `statusguru`) VALUES
 (1, '197303092006041012', 'Sarif Mahu, S.Pd.SD', 'Kwarmor, 09-03-1973', 1, 1, 5, '0813545454', 'Batu Merah', 5, 1),
-(3, '232512321', 'Testing Nama Guru', 'Zimbabwe,  09-21-1977', 1, 2, 7, '0812121212', 'ZimbabRoad Ride Sip', 8, 2);
+(2, '198308172008012026', 'Basmiati S.Pd.SD', 'Limbung, 08-17-1983', 2, 1, 5, '08522222', 'K. Cengkeh', 8, 1),
+(3, '198308172008012999', 'M. Natsir S.Pd', 'Ambon, 11-03-1989', 1, 1, 5, '081323212355', 'Tantui', 6, 1),
+(4, '198412182008012004', 'Nani Khu. S.Pd.SD', 'Amboina, 12-18-1984', 2, 1, 5, '1085273282', 'Batu Merah', 9, 2),
+(5, '198412182008012111', 'Susi Susanti S.Pd', 'Ambon, 11-03-1995', 2, 2, 4, '0852232', 'Ambon', 9, 2);
 
 -- --------------------------------------------------------
 
@@ -131,7 +134,8 @@ INSERT INTO `tbl_kelas` (`id_kelas`, `kode_kelas`, `nama_kelas`) VALUES
 (5, 'K03', 'Kelas lll'),
 (6, 'K04', 'Kelas lV'),
 (7, 'k05', 'Kelas V'),
-(8, 'K06', 'Kelas VI');
+(8, 'K06', 'Kelas VI'),
+(9, '000', 'Tidak Ada');
 
 -- --------------------------------------------------------
 
@@ -309,13 +313,13 @@ ALTER TABLE `tbl_contactus`
 -- AUTO_INCREMENT for table `tbl_guru`
 --
 ALTER TABLE `tbl_guru`
-  MODIFY `id_guru` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_guru` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_kelas`
 --
 ALTER TABLE `tbl_kelas`
-  MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tbl_pendidikan`
