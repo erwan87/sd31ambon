@@ -144,7 +144,7 @@
                                                                                         <div class="modal fade" id="edit<?= $show['id_guru'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                                                             <div class="modal-dialog" role="modal">
                                                                                                 <div class="modal-content">
-                                                                                                <?= form_open("dashboard/updateGuru", array("id" => "form-user", "class" => "form-horizontal")) ?>
+                                                                                                <?= form_open("dashboard/updateGuru", array("id[]" => "form-user", "class" => "form-horizontal")) ?>
                                                                                                     <div class="modal-header">
                                                                                                         <h5 class="modal-title" id="demoModalLabel">Edit Users</h5>
                                                                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -153,40 +153,40 @@
                                                                                                         <div id="the-message"></div>
                                                                                                         <div class="form-group">
                                                                                                             <label for="nip">NIP</label>
-                                                                                                            <input type="text" id="nip" name="nip" class="form-control" value="<?= $show['nisp']; ?>">
-                                                                                                            <input type="hidden" id="id" name="id" value="<?= $show['id_guru']; ?>">
+                                                                                                            <input type="text" id[]="nip" name[]="nip" class="form-control" value="<?= $show['nisp']; ?>">
+                                                                                                            <input type="hidden" id[]="id" name[]="id" value="<?= $show['id_guru']; ?>">
                                                                                                         </div>
                                                                                                         <div class="form-group">
                                                                                                             <label for="nameGuru">Nama Guru</label>
-                                                                                                            <input type="text" id="nameGuru" name="nameGuru" class="form-control" value="<?= $show['nama_guru']; ?>" required>
+                                                                                                            <input type="text" id[]="nameGuru" name[]="nameGuru" class="form-control" value="<?= $show['nama_guru']; ?>" required>
                                                                                                         </div>
                                                                                                         <?php
                                                                                             $data   = explode(",", $show['ttl']); ?>
                                                                                                         <div class="form-group">
                                                                                                             <label for="jenkel">Tempat Tanggal Lahir</label>
-                                                                                                            <input type="text" id="tempat" name="tempat" class="form-control" placeholder="tempat lahir" value="<?= $data[0]; ?>" required>
-                                                                                                            <input type="text" id="tgl" name="tgl" class="form-control datepicker" placeholder="tgl lahir" value="<?= $data[1]; ?>" required>
+                                                                                                            <input type="text" id[]="tempat" name[]="tempat" class="form-control" placeholder="tempat lahir" value="<?= $data[0]; ?>" required>
+                                                                                                            <input type="text" id[]="tgl" name[]="tgl" class="form-control datepicker" placeholder="tgl lahir" value="<?= $data[1]; ?>" required>
                                                                                                         </div>
                                                                                                         <div class="form-group">
                                                                                                             <label for="jenkel">Jenis Kelamin</label>
-                                                                                                            <select class="form-control" name="jenkel" id="jenkel">
+                                                                                                            <select class="form-control" name[]="jenkel" id[]="jenkel">
                                                                                                                 <option value="1" <?php if ($show['jenkel']===1) {
                                                                                                 $selected='selected';
                                                                                             } else {
                                                                                                 echo $selected ='';
                                                                                             };
-                                                                                            echo $selected ; ?>>Pria</option>
+                                                                                            echo $selected ; ?>>Laki - Laki</option>
                                                                                                                 <option value="2" <?php if ($show['jenkel']===1) {
                                                                                                 $selected='selected';
                                                                                             } else {
                                                                                                 echo $selected ='';
                                                                                             };
-                                                                                            echo $selected ; ?>>Wanita</option>
+                                                                                            echo $selected ; ?>>Perempuan</option>
                                                                                                             </select>
                                                                                                         </div>
                                                                                                         <div class="form-group">
                                                                                                             <label for="agama">Agama</label>
-                                                                                                            <select class="form-control" name="agama" id="agama">
+                                                                                                            <select class="form-control" name[]="agama" id[]="agama">
                                                                                                                 <?php foreach ($agama as $row) : ?>
                                                                                                                 <?php
                                                                                                                 if ($row['id_agama']===$show['agama']) {
@@ -202,7 +202,7 @@
                                                                                                         </div>
                                                                                                         <div class="form-group">
                                                                                                             <label for="pendidikan">Pendidikan</label>
-                                                                                                            <select class="form-control" name="pendidikan" id="pendidikan">
+                                                                                                            <select class="form-control" name[]="pendidikan" id[]="pendidikan">
                                                                                                                 <?php foreach ($pendidikan as $row) : ?>
                                                                                                                 <?php
                                                                                                                 if ($row['id_pendidikan']===$show['pendidikan']) {
@@ -218,15 +218,15 @@
                                                                                                         </div>
                                                                                                         <div class="form-group">
                                                                                                             <label for="telp">Telphone</label>
-                                                                                                            <input type="text" id="telp" name="telp" class="form-control" value="<?=$show['telp']; ?>" required>
+                                                                                                            <input type="text" id[]="telp" name[]="telp" class="form-control" value="<?=$show['telp']; ?>" required>
                                                                                                         </div>
                                                                                                         <div class="form-group">
                                                                                                             <label for="alamat">Alamat</label>
-                                                                                                            <input type="text" id="alamat" name="alamat" class="form-control" value="<?=$show['alamat']; ?>" required>
+                                                                                                            <input type="text" id[]="alamat" name[]="alamat" class="form-control" value="<?=$show['alamat']; ?>" required>
                                                                                                         </div>
                                                                                                         <div class="form-group">
                                                                                                             <label for="kelas">Wali Kelas</label>
-                                                                                                            <select class="form-control" name="kelas" id="kelas">
+                                                                                                            <select class="form-control" name[]="kelas" id[]="kelas">
                                                                                                                 <?php foreach ($kelas as $row) : ?>
                                                                                                                 <?php
                                                                                                                 if ($row['id_kelas']===$show['kelas']) {
@@ -242,7 +242,7 @@
                                                                                                         </div>
                                                                                                         <div class="form-group">
                                                                                                             <label for="stat">Status Guru</label>
-                                                                                                            <select class="form-control" name="stat" id="stat">
+                                                                                                            <select class="form-control" name[]="stat" id[]="stat">
                                                                                                                 <?php foreach ($status as $row) : ?>
                                                                                                                 <?php
                                                                                                                 if ($row['id_stat']===$show['statusguru']) {
@@ -309,8 +309,8 @@
                                                             <label for="jenkel">Jenis Kelamin</label>
                                                             <select class="form-control" name="jenkel" id="jenkel">
                                                                 <option value="">No Selected</option>
-                                                                <option value="1">Pria</option>
-                                                                <option value="2">Wanita</option>
+                                                                <option value="1">Laki - Laki</option>
+                                                                <option value="2">Perempuan</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group">
