@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 21, 2020 at 12:44 PM
+-- Generation Time: Sep 21, 2020 at 04:41 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -140,6 +140,32 @@ INSERT INTO `tbl_kelas` (`id_kelas`, `kode_kelas`, `nama_kelas`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_mapel`
+--
+
+CREATE TABLE `tbl_mapel` (
+  `id_mapel` int(11) NOT NULL,
+  `kode_mapel` varchar(16) DEFAULT NULL,
+  `nama_mapel` varchar(32) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_mapel`
+--
+
+INSERT INTO `tbl_mapel` (`id_mapel`, `kode_mapel`, `nama_mapel`) VALUES
+(1, 'M01', 'Pendidikan Agama'),
+(2, 'M02', 'Bahasa Indonesia'),
+(3, 'M03', 'Matematika'),
+(4, 'M04', 'Ilmu Pengetahuan Alam'),
+(5, 'M05', 'PPKN'),
+(6, 'M06', 'Penjaskes'),
+(7, 'M07', 'Ilmu Pengetahuan Sosial'),
+(8, 'M08', 'Seni Budaya');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_pendidikan`
 --
 
@@ -180,6 +206,36 @@ INSERT INTO `tbl_role` (`id`, `name`) VALUES
 (1, 'Administrator'),
 (2, 'Siswa'),
 (3, 'Wali Kelas');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_siswa`
+--
+
+CREATE TABLE `tbl_siswa` (
+  `id_siswa` int(11) NOT NULL,
+  `nisn` varchar(32) DEFAULT NULL,
+  `nama_siswa` varchar(64) DEFAULT NULL,
+  `ttl` varchar(128) NOT NULL,
+  `jenkel` int(11) NOT NULL,
+  `agama` int(11) NOT NULL,
+  `alamat` varchar(128) NOT NULL,
+  `nama_ayah` varchar(32) NOT NULL,
+  `nama_ibu` varchar(32) NOT NULL,
+  `alamat_ortu` varchar(128) NOT NULL,
+  `telp_ortu` varchar(32) NOT NULL,
+  `kelas` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_siswa`
+--
+
+INSERT INTO `tbl_siswa` (`id_siswa`, `nisn`, `nama_siswa`, `ttl`, `jenkel`, `agama`, `alamat`, `nama_ayah`, `nama_ibu`, `alamat_ortu`, `telp_ortu`, `kelas`) VALUES
+(1, '1234567890', 'kiki', 'Ambon, 11-04-2008', 1, 3, 'Ambon', 'Kaka', 'Keke', 'Ambon', '08123456789', 5),
+(2, '1234567891', 'Imanuela', 'Ambon, 11-06-2012', 2, 3, 'Ambon', 'Imanuela', 'Ester', 'Ambon', '081234567891', 1),
+(3, '1234567892', 'Risky', 'Ambon, 11-02-2009', 1, 3, 'Ambon', 'Simon', 'Maria', 'Ambon', '081234567892', 1);
 
 -- --------------------------------------------------------
 
@@ -264,6 +320,12 @@ ALTER TABLE `tbl_kelas`
   ADD PRIMARY KEY (`id_kelas`);
 
 --
+-- Indexes for table `tbl_mapel`
+--
+ALTER TABLE `tbl_mapel`
+  ADD PRIMARY KEY (`id_mapel`);
+
+--
 -- Indexes for table `tbl_pendidikan`
 --
 ALTER TABLE `tbl_pendidikan`
@@ -274,6 +336,12 @@ ALTER TABLE `tbl_pendidikan`
 --
 ALTER TABLE `tbl_role`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_siswa`
+--
+ALTER TABLE `tbl_siswa`
+  ADD PRIMARY KEY (`id_siswa`);
 
 --
 -- Indexes for table `tbl_statusguru`
@@ -322,6 +390,12 @@ ALTER TABLE `tbl_kelas`
   MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT for table `tbl_mapel`
+--
+ALTER TABLE `tbl_mapel`
+  MODIFY `id_mapel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `tbl_pendidikan`
 --
 ALTER TABLE `tbl_pendidikan`
@@ -332,6 +406,12 @@ ALTER TABLE `tbl_pendidikan`
 --
 ALTER TABLE `tbl_role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `tbl_siswa`
+--
+ALTER TABLE `tbl_siswa`
+  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_statusguru`
