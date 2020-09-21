@@ -30,7 +30,7 @@
 	
 	<!-- Nav Item - Siswa Start -->
 	<li class="nav-item">
-		<a class="nav-link" href="<?= base_url('Siswa'); ?>">
+		<a class="nav-link" href="<?= base_url('dashboard/siswa'); ?>">
 			<i class="fas fa-fw fa-users"></i>
 			<span>Siswa</span>
 		</a>
@@ -39,7 +39,7 @@
 
 	<!-- Nav Item - Kelas Start -->
 	<li class="nav-item">
-		<a class="nav-link" href="<?= base_url('kelas'); ?>">
+		<a class="nav-link" href="<?= base_url('dashboard/kelas'); ?>">
 			<i class="fas fa-fw fa-tachometer-alt"></i>
 			<span>Kelas</span>
 		</a>
@@ -48,7 +48,7 @@
 
 	<!-- Nav Item - Mata Pelajaran Start -->
 	<li class="nav-item">
-		<a class="nav-link" href="<?= base_url('mapel'); ?>">
+		<a class="nav-link" href="<?= base_url('dashboard/mapel'); ?>">
 			<i class="fa fa-fw fa-book"></i>
 			<span>Mata Pelajaran</span>
 		</a>
@@ -57,7 +57,7 @@
 
 	<!-- Nav Item - Jadwal Start -->
 	<li class="nav-item">
-		<a class="nav-link" href="<?= base_url('jadwal'); ?>">
+		<a class="nav-link" href="<?= base_url('dashboard/jadwal'); ?>">
 			<i class="fas fa-fw fa-calendar"></i>
 			<span>Jadwal</span>
 		</a>
@@ -75,7 +75,7 @@
 
 	<!-- Nav Item - About Start -->
 	<li class="nav-item">
-		<a class="nav-link" href="<?= base_url('about'); ?>">
+		<a class="nav-link" href="<?= base_url('dashboard/about'); ?>">
 			<i class="fas fa-fw fa-info"></i>
 			<span>About</span>
 		</a>
