@@ -59,8 +59,10 @@ class Login extends CI_Controller
                 $this->session->set_userdata($data_session);
                 if ($this->session->userdata('role_id') == 1) {
                     redirect('dashboard');
+                } elseif ($this->session->userdata('role_id') == 2) {
+                    redirect('siswa');
                 } else {
-                    redirect('front');
+                    redirect('guru');
                 }
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data Tidak ditemukan</div>');
