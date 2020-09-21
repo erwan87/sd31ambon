@@ -164,4 +164,59 @@ class Dashboard extends CI_Controller
         }
         redirect('dashboard/guru', 'refresh');
     }
+
+    // Kelas
+    public function kelas()
+    {
+        $data	= [
+            'titles'	=> "Dashboard Administrator",
+            'user'	    => $this->Dashboard_model->view()->result_array(),
+            'kls'       => $this->Dashboard_model->views('tbl_kelas')->result_array(),
+            'kelas'	    => true,
+            'icons'     => "",
+            'breadcumb'	=> "Ruangan Kelas",
+            'view'		=> "v_kelas"
+        ];
+        $this->load->view("index", $data);
+    }
+
+    public function addKelas()
+    {
+        $input  = [
+            'kode_kelas'    => $this->input->post('kdkelas'),
+            'nama_kelas'    => $this->input->post('namaKelas')
+        ];
+
+        // Insert data kedalam database
+        if ($this->Dashboard_model->inserts('tbl_kelas', $input)) {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="succes">Data Berhasil di tambahkan !!!</div>');
+        }
+        redirect('dashboard/kelas', 'refresh');
+    }
+
+    public function updateKelas()
+    {
+        $id                 = htmlentities($this->input->post('id'));
+        $update  = [
+            'kode_kelas'    => htmlentities($this->input->post('kdkelas')),
+            'nama_kelas'    => htmlentities($this->input->post('namaKelas'))
+        ];
+
+        // Update Data Guru
+        if ($this->Dashboard_model->updates('tbl_kelas', 'id_kelas', $id, $update)) {
+            $this->session->set_flashdata(' message', '<div class="alert alert-success" role="succes">Data Berhasil di Ubah !!!</div>');
+        }
+        redirect('dashboard/kelas', 'refresh');
+    }
+    
+    // Delete Kelas
+    public function delKelas($id)
+    {
+        if ($this->Dashboard_model->deletes('id_kelas', 'tbl_kelas', $id)) {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Congrulation your Data ID = [' .$id.'] has been deleted</div>');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Error</div>');
+        }
+        redirect('dashboard/kelas', 'refresh');
+    }
 }
