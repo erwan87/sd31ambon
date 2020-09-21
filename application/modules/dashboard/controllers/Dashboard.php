@@ -357,4 +357,75 @@ class Dashboard extends CI_Controller
         }
         redirect('dashboard/mapel', 'refresh');
     }
+
+    // Jadwal MAPEL
+    public function jadwal()
+    {
+        $data	= [
+            'titles'	=> "Dashboard Administrator",
+            'user'	    => $this->Dashboard_model->view()->result_array(),
+            'jadmap'    => $this->Dashboard_model->viewJadwal()->result_array(),
+            'mapel'     => $this->Dashboard_model->views('tbl_mapel')->result_array(),
+            'guru'      => $this->Dashboard_model->views('tbl_guru')->result_array(),
+            'kls'       => $this->Dashboard_model->views('tbl_kelas')->result_array(),
+            'hari'      => $this->Dashboard_model->views('tbl_hari')->result_array(),
+            'jadwal'    => true,
+            'icons'     => "",
+            'breadcumb'	=> "Jadwal",
+            'view'		=> "v_jadwal"
+        ];
+        $this->load->view("index", $data);
+    }
+
+    public function addJadwal()
+    {
+        $mulai  = htmlentities($this->input->post('mulai'));
+        $akhir  = htmlentities($this->input->post('akhir'));
+        $jam    = $mulai.' - ' .$akhir;
+        $input  = [
+            'mapel'     => htmlentities($this->input->post('mapel')),
+            'guru'      => htmlentities($this->input->post('guru')),
+            'kelas'     => htmlentities($this->input->post('kelas')),
+            'hari'      => htmlentities($this->input->post('hari')),
+            'jam'       => $jam
+        ];
+
+        // Insert data kedalam database
+        if ($this->Dashboard_model->inserts('tbl_jadwal', $input)) {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="succes">Data Berhasil di tambahkan !!!</div>');
+        }
+        redirect('dashboard/jadwal', 'refresh');
+    }
+
+    public function updateJadwal()
+    {
+        $mulai  = htmlentities($this->input->post('mulai'));
+        $akhir  = htmlentities($this->input->post('akhir'));
+        $jam    = $mulai.' - ' .$akhir;
+        $id                 = htmlentities($this->input->post('id'));
+        $update  = [
+            'mapel'     => htmlentities($this->input->post('mapel')),
+            'guru'      => htmlentities($this->input->post('guru')),
+            'kelas'     => htmlentities($this->input->post('kelas')),
+            'hari'      => htmlentities($this->input->post('hari')),
+            'jam'       => $jam
+        ];
+
+        // Update Data Jadwal
+        if ($this->Dashboard_model->updates('tbl_jadwal', 'id_jadwal', $id, $update)) {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="succes">Data Berhasil di Ubah !!!</div>');
+        }
+        redirect('dashboard/jadwal', 'refresh');
+    }
+
+    // Delete Jadwal
+    public function delJadwal($id)
+    {
+        if ($this->Dashboard_model->deletes('id_jadwal', 'tbl_jadwal', $id)) {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Congrulation your Data ID = [' .$id.'] has been deleted</div>');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Error</div>');
+        }
+        redirect('dashboard/jadwal', 'refresh');
+    }
 }

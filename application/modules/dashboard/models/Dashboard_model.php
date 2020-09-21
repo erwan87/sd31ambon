@@ -97,4 +97,17 @@ class Dashboard_model extends CI_Model
         
         return $query;
     }
+
+    public function viewJadwal()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_jadwal');
+        $this->db->join('tbl_mapel', 'tbl_jadwal.mapel=tbl_mapel.id_mapel', 'LEFT');
+        $this->db->join('tbl_guru', 'tbl_jadwal.guru=tbl_guru.id_guru', 'LEFT');
+        $this->db->join('tbl_kelas', 'tbl_jadwal.kelas=tbl_kelas.id_kelas', 'LEFT');
+        $this->db->join('tbl_hari', 'tbl_jadwal.hari=tbl_hari.id_hari', 'LEFT');
+        $query  = $this->db->get();
+        
+        return $query;
+    }
 }
