@@ -19,7 +19,7 @@ class Dashboard_model extends CI_Model
         return $this->db->insert($table, $input);
     }
 
-    // Global Insert dengan $table sebagai nama tabel dan $input sebagai inputan datanya
+    // Global Update dengan $table sebagai nama tabel dan $input sebagai inputan datanya
     public function updates($table, $where, $id, $update)
     {
         return $this->db->where($where, $id)->update($table, $update);
