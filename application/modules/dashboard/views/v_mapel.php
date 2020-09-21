@@ -82,7 +82,7 @@
                                                 <div class="x_panel">
                                                     <div class="x_content">
                                                         <p class="text-muted font-13 m-b-30"></p>
-                                                        <a data-toggle="modal" data-target="#addKelas" class="btn btn-success"><i class="fas fa-plus"></i>
+                                                        <a data-toggle="modal" data-target="#addMapel" class="btn btn-success"><i class="fas fa-plus"></i>
                                                             Add</a>
                                                         <!-- Tabel -->
                                                         <div class="">
@@ -96,48 +96,48 @@
                                                                                     <thead>
                                                                                         <tr>
                                                                                             <th>No</th>
-                                                                                            <th>Kode Kelas</th>
-                                                                                            <th>Nama Kelas</th>
+                                                                                            <th>Kode Mata Pelajaran</th>
+                                                                                            <th>Nama Mata Pelajaran</th>
                                                                                             <th>Action</th>
                                                                                         </tr>
                                                                                     </thead>
                                                                                     <tbody>
                                                                                     <?php
                                                                                         $i = 1;
-                                                                                        foreach ($kls as $show) {
+                                                                                        foreach ($mapel as $show) {
                                                                                             ; ?>
                                                                                         <tr>
                                                                                             <td><?= $i++ ; ?></td>
-                                                                                            <td><?= $show['kode_kelas'] ; ?></td>
-                                                                                            <td><?= $show['nama_kelas'] ; ?></td>
+                                                                                            <td><?= $show['kode_mapel'] ; ?></td>
+                                                                                            <td><?= $show['nama_mapel'] ; ?></td>
                                                                                             <td>
-                                                                                                <a data-toggle="modal" href="#edit<?= $show['id_kelas'] ?>" class="btn btn-info btn-sm" data-judul="Untuk menghapus Kelebihan ?" data-konfirm="Yakin, Hapus Data !">
+                                                                                                <a data-toggle="modal" href="#edit<?= $show['id_mapel'] ?>" class="btn btn-info btn-sm" data-judul="Untuk menghapus Kelebihan ?" data-konfirm="Yakin, Hapus Data !">
                                                                                                     <i class="fa fa-pencil"></i> Edit
                                                                                                 </a>
-                                                                                                <a href="<?= base_url('dashboard/delKelas/' . $show['id_kelas']) ?>" class="btn btn-info btn-sm" data-judul="Untuk menghapus Kelebihan ?" data-konfirm="Yakin, Hapus Data !">
+                                                                                                <a href="<?= base_url('dashboard/delMapel/' . $show['id_mapel']) ?>" class="btn btn-info btn-sm" data-judul="Untuk menghapus Kelebihan ?" data-konfirm="Yakin, Hapus Data !">
                                                                                                     <i class="fa fa-trash"></i> Delete
                                                                                                 </a>
                                                                                             </td>
                                                                                         </tr>
                                                                                         <!-- Modal Edit Guru Start -->
-                                                                                            <div class="modal fade" id="edit<?= $show['id_kelas'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                                                            <div class="modal fade" id="edit<?= $show['id_mapel'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                                                                 <div class="modal-dialog" role="modal">
                                                                                                     <div class="modal-content">
-                                                                                                        <?= form_open("dashboard/updateKelas", array("id[]" => "form-user", "class" => "form-horizontal")) ?>
+                                                                                                        <?= form_open("dashboard/updateMapel", array("id[]" => "form-user", "class" => "form-horizontal")) ?>
                                                                                                             <div class="modal-header">
-                                                                                                                <h5 class="modal-title" id="demoModalLabel">Edit Users</h5>
+                                                                                                                <h5 class="modal-title" id="demoModalLabel">Edit Mata Pelajaran</h5>
                                                                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                                                                                             </div>
                                                                                                             <div class="modal-body">
                                                                                                                 <div id="the-message"></div>
                                                                                                                 <div class="form-group">
-                                                                                                                    <label for="kdkelas">Kode Kelas</label>
-                                                                                                                    <input type="text" id="kdkelas" name="kdkelas" class="form-control" value="<?=$show['kode_kelas']; ?>" required>
-                                                                                                                    <input type="hidden" id="id" name="id" value="<?= $show['id_kelas']; ?>">
+                                                                                                                    <label for="kdMapel">Kode Kelas</label>
+                                                                                                                    <input type="text" id[]="kdMapel" name="kdMapel" class="form-control" value="<?=$show['kode_mapel']; ?>" required>
+                                                                                                                    <input type="hidden" id[]="id" name="id" value="<?= $show['id_mapel']; ?>">
                                                                                                                 </div>
                                                                                                                 <div class="form-group">
-                                                                                                                    <label for="namaKelas">Nama Kelas</label>
-                                                                                                                    <input type="text" id="namaKelas" name="namaKelas" class="form-control" value="<?=$show['nama_kelas']; ?>" required>
+                                                                                                                    <label for="namaMapel">Nama Kelas</label>
+                                                                                                                    <input type="text" id[]="namaMapel" name="namaMapel" class="form-control" value="<?=$show['nama_mapel']; ?>" required>
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                             <div class="modal-footer">
@@ -166,8 +166,8 @@
                                         </div>
                                     </div>
                                     <!-- Modal ADD Kelas Start -->
-                                    <?= form_open("dashboard/addKelas", array("id" => "form-user", "class" => "form-horizontal")) ?>
-                                        <div class="modal fade" id="addKelas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <?= form_open("dashboard/addMapel", array("id" => "form-user", "class" => "form-horizontal")) ?>
+                                        <div class="modal fade" id="addMapel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="modal">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -177,12 +177,12 @@
                                                     <div class="modal-body">
                                                     <div id="the-message"></div>
                                                         <div class="form-group">
-                                                            <label for="kdkelas">Kode Kelas</label>
-                                                            <input type="text" id="kdkelas" name="kdkelas" class="form-control" required>
+                                                            <label for="kdMapel">Kode Kelas</label>
+                                                            <input type="text" id="kdMapel" name="kdMapel" class="form-control" required>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="namaKelas">Nama Kelas</label>
-                                                            <input type="text" id="namaKelas" name="namaKelas" class="form-control" required>
+                                                            <label for="namaMapel">Nama Kelas</label>
+                                                            <input type="text" id="namaMapel" name="namaMapel" class="form-control" required>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">

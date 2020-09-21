@@ -202,7 +202,7 @@ class Dashboard extends CI_Controller
             'nama_kelas'    => htmlentities($this->input->post('namaKelas'))
         ];
 
-        // Update Data Guru
+        // Update Data Kelas
         if ($this->Dashboard_model->updates('tbl_kelas', 'id_kelas', $id, $update)) {
             $this->session->set_flashdata(' message', '<div class="alert alert-success" role="succes">Data Berhasil di Ubah !!!</div>');
         }
@@ -218,5 +218,60 @@ class Dashboard extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Error</div>');
         }
         redirect('dashboard/kelas', 'refresh');
+    }
+
+    // Mata Pelajaran
+    public function mapel()
+    {
+        $data	= [
+            'titles'	=> "Dashboard Administrator",
+            'user'	    => $this->Dashboard_model->view()->result_array(),
+            'mapel'     => $this->Dashboard_model->views('tbl_mapel')->result_array(),
+            'matapel'   => true,
+            'icons'     => "",
+            'breadcumb'	=> "Mata Pelajaran",
+            'view'		=> "v_mapel"
+        ];
+        $this->load->view("index", $data);
+    }
+
+    public function addMapel()
+    {
+        $input  = [
+            'kode_mapel'    => $this->input->post('kdMapel'),
+            'nama_mapel'    => $this->input->post('namaMapel')
+        ];
+
+        // Insert data kedalam database
+        if ($this->Dashboard_model->inserts('tbl_mapel', $input)) {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="succes">Data Berhasil di tambahkan !!!</div>');
+        }
+        redirect('dashboard/mapel', 'refresh');
+    }
+
+    public function updateMapel()
+    {
+        $id                 = htmlentities($this->input->post('id'));
+        $update  = [
+            'kode_mapel'    => htmlentities($this->input->post('kdMapel')),
+            'nama_mapel'    => htmlentities($this->input->post('namaMapel'))
+        ];
+
+        // Update Data Mata Pelajaran
+        if ($this->Dashboard_model->updates('tbl_mapel', 'id_mapel', $id, $update)) {
+            $this->session->set_flashdata(' message', '<div class="alert alert-success" role="succes">Data Berhasil di Ubah !!!</div>');
+        }
+        redirect('dashboard/mapel', 'refresh');
+    }
+
+    // Delete Mata Pelajaran
+    public function delMapel($id)
+    {
+        if ($this->Dashboard_model->deletes('id_mapel', 'tbl_mapel', $id)) {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Congrulation your Data ID = [' .$id.'] has been deleted</div>');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Error</div>');
+        }
+        redirect('dashboard/mapel', 'refresh');
     }
 }
