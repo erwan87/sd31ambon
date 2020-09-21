@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 21, 2020 at 04:41 PM
+-- Generation Time: Sep 21, 2020 at 06:07 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -109,6 +109,53 @@ INSERT INTO `tbl_guru` (`id_guru`, `nisp`, `nama_guru`, `ttl`, `jenkel`, `agama`
 (3, '198308172008012999', 'M. Natsir S.Pd', 'Ambon, 11-03-1989', 1, 1, 5, '081323212355', 'Tantui', 6, 1),
 (4, '198412182008012004', 'Nani Khu. S.Pd.SD', 'Amboina, 12-18-1984', 2, 1, 5, '1085273282', 'Batu Merah', 9, 2),
 (5, '198412182008012111', 'Susi Susanti S.Pd', 'Ambon, 11-03-1995', 2, 2, 4, '0852232', 'Ambon', 9, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_hari`
+--
+
+CREATE TABLE `tbl_hari` (
+  `id_hari` int(11) NOT NULL,
+  `nama_hari` varchar(12) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_hari`
+--
+
+INSERT INTO `tbl_hari` (`id_hari`, `nama_hari`) VALUES
+(1, 'Senin'),
+(2, 'Selasa'),
+(3, 'Rabu'),
+(4, 'Kamis'),
+(5, 'Jumat'),
+(6, 'Sabtu');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_jadwal`
+--
+
+CREATE TABLE `tbl_jadwal` (
+  `id_jadwal` int(11) NOT NULL,
+  `mapel` int(11) NOT NULL,
+  `guru` int(11) NOT NULL,
+  `kelas` int(11) NOT NULL,
+  `hari` int(11) NOT NULL,
+  `jam` varchar(16) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_jadwal`
+--
+
+INSERT INTO `tbl_jadwal` (`id_jadwal`, `mapel`, `guru`, `kelas`, `hari`, `jam`) VALUES
+(1, 2, 1, 4, 3, '20:35 - 21:35'),
+(2, 1, 1, 1, 1, '20:30 - 21:30'),
+(3, 5, 1, 4, 4, '17:54 - 18:54');
 
 -- --------------------------------------------------------
 
@@ -314,6 +361,18 @@ ALTER TABLE `tbl_guru`
   ADD PRIMARY KEY (`id_guru`);
 
 --
+-- Indexes for table `tbl_hari`
+--
+ALTER TABLE `tbl_hari`
+  ADD PRIMARY KEY (`id_hari`);
+
+--
+-- Indexes for table `tbl_jadwal`
+--
+ALTER TABLE `tbl_jadwal`
+  ADD PRIMARY KEY (`id_jadwal`);
+
+--
 -- Indexes for table `tbl_kelas`
 --
 ALTER TABLE `tbl_kelas`
@@ -382,6 +441,18 @@ ALTER TABLE `tbl_contactus`
 --
 ALTER TABLE `tbl_guru`
   MODIFY `id_guru` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `tbl_hari`
+--
+ALTER TABLE `tbl_hari`
+  MODIFY `id_hari` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `tbl_jadwal`
+--
+ALTER TABLE `tbl_jadwal`
+  MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_kelas`
