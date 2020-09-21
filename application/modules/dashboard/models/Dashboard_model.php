@@ -86,4 +86,15 @@ class Dashboard_model extends CI_Model
         
         return $query;
     }
+
+    public function viewSiswa()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_siswa');
+        $this->db->join('tbl_agama', 'tbl_siswa.agama=tbl_agama.id_agama', 'LEFT');
+        $this->db->join('tbl_kelas', 'tbl_siswa.kelas=tbl_kelas.id_kelas', 'LEFT');
+        $query  = $this->db->get();
+        
+        return $query;
+    }
 }

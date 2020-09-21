@@ -165,6 +165,89 @@ class Dashboard extends CI_Controller
         redirect('dashboard/guru', 'refresh');
     }
 
+    // Siswa
+    public function siswa()
+    {
+        $data	= [
+            'titles'	    => "Dashboard Administrator",
+            'user'	        => $this->Dashboard_model->view()->result_array(),
+            'sis'           => $this->Dashboard_model->viewSiswa()->result_array(),
+            'agama'         => $this->Dashboard_model->views('tbl_agama')->result_array(),
+            'kls'           => $this->Dashboard_model->views('tbl_kelas')->result_array(),
+            'siswa'	        => true,
+            'icons'         => "",
+            'breadcumb'	    => "Siswa",
+            'view'		    => "v_siswa"
+        ];
+        $this->load->view("index", $data);
+    }
+
+    public function addSiswa()
+    {
+        $tempatLahir        = $this->input->post('tempat');
+        $tgl                = $this->input->post('tgl');
+        $gnttgl             = str_replace('/', '-', $tgl);
+        $ttl                = $tempatLahir.', '.$gnttgl;
+        $input  = [
+            'nisn'          => $this->input->post('nisn'),
+            'nama_siswa'    => $this->input->post('namaSiswa'),
+            'ttl'           => $ttl,
+            'jenkel'        => $this->input->post('jenkel'),
+            'agama'         => $this->input->post('agama'),
+            'alamat'        => $this->input->post('alamat'),
+            'nama_ayah'     => $this->input->post('namaAyah'),
+            'nama_ibu'      => $this->input->post('namaIbu'),
+            'alamat_ortu'   => $this->input->post('alamatOrtu'),
+            'telp_ortu'     => $this->input->post('telpOrtu'),
+            'kelas'         => $this->input->post('kelas')
+        ];
+
+        // Insert data kedalam database
+        if ($this->Dashboard_model->inserts('tbl_siswa', $input)) {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="succes">Data Berhasil di tambahkan !!!</div>');
+        }
+        redirect('dashboard/siswa', 'refresh');
+    }
+
+    // Update Guru
+    public function updateSiswa()
+    {
+        $tempatLahir        = htmlentities($this->input->post('tempat'));
+        $tgl                = htmlentities($this->input->post('tgl'));
+        $gnttgl             = str_replace('/', '-', $tgl);
+        $ttl                = $tempatLahir.', '.$gnttgl;
+        $id                 = htmlentities($this->input->post('id'));
+        $update  = [
+            'nisn'          => htmlentities($this->input->post('nisn')),
+            'nama_siswa'    => htmlentities($this->input->post('namaSiswa')),
+            'ttl'           => $ttl,
+            'jenkel'        => htmlentities($this->input->post('jenkel')),
+            'agama'         => htmlentities($this->input->post('agama')),
+            'alamat'        => htmlentities($this->input->post('alamat')),
+            'nama_ayah'     => htmlentities($this->input->post('namaAyah')),
+            'nama_ibu'      => htmlentities($this->input->post('namaIbu')),
+            'alamat_ortu'   => htmlentities($this->input->post('alamatOrtu')),
+            'telp_ortu'     => htmlentities($this->input->post('telp')),
+            'kelas'         => htmlentities($this->input->post('kelas'))
+        ];
+        // Update Data Siswa
+        if ($this->Dashboard_model->updates('tbl_siswa', 'id_siswa', $id, $update)) {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="succes">Data Berhasil di Ubah !!!</div>');
+        }
+        redirect('dashboard/siswa', 'refresh');
+    }
+
+    // Delete Siswa
+    public function delSiswa($id)
+    {
+        if ($this->Dashboard_model->deletes('id_siswa', 'tbl_siswa', $id)) {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Congrulation your Data ID = [' .$id.'] has been deleted</div>');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Error</div>');
+        }
+        redirect('dashboard/siswa', 'refresh');
+    }
+
     // Kelas
     public function kelas()
     {
