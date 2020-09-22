@@ -107,4 +107,19 @@ class Siswa extends CI_Controller
 
         $this->load->view("index", $data);
     }
+
+    // Module About
+    public function about()
+    {
+        $id     = $this->session->userdata('id');
+        $data	= [
+            'titles'	=> "Dashboard Siswa",
+            'user'	    => $this->Dashboard_model->viewu('tbl_users', 'id', $id)->result_array(),
+            'About'	    => true,
+            'icons'     => "fa fa-info",
+            'breadcumb'	=> "About",
+            'view'		=> "v_about"
+        ];
+        $this->load->view("index", $data);
+    }
 }
