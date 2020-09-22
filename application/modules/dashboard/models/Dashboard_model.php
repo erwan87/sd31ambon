@@ -3,6 +3,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Dashboard_model extends CI_Model
 {
+    // Global View Where
+    public function viewu($tbl, $where, $id)
+    {
+        $this->db->select('*');
+        $this->db->from($tbl);
+        $this->db->where($where, $id);
+        $query  = $this->db->get();
+
+        return $query;
+    }
+
     // Global View dengna $tbl sebagai nama tabel nya
     public function views($tbl)
     {
