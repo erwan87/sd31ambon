@@ -428,4 +428,18 @@ class Dashboard extends CI_Controller
         }
         redirect('dashboard/jadwal', 'refresh');
     }
+
+    // Module About
+    public function about()
+    {
+        $data	= [
+            'titles'	=> "Dashboard Administrator",
+            'user'	    => $this->Dashboard_model->view()->result_array(),
+            'about'	    => true,
+            'icons'     => "fa fa-home",
+            'breadcumb'	=> "About",
+            'view'		=> "v_about"
+        ];
+        $this->load->view("index", $data);
+    }
 }
