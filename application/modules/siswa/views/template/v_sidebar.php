@@ -30,7 +30,7 @@
 
 	<!-- Nav Item - Nilai Start -->
 	<li class="nav-item">
-		<a class="nav-link" href="<?= base_url('siswa/user'); ?>">
+		<a class="nav-link" href="<?= base_url('siswa/nilai'); ?>">
 			<i class="fas fa-fw fa-book"></i>
 			<span>Nilai</span>
 		</a>

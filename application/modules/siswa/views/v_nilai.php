@@ -95,25 +95,27 @@
                                                                                     <thead>
                                                                                         <tr>
                                                                                             <th>No</th>
+                                                                                            <th>Siswa</th>
                                                                                             <th>Mata Pelajaran</th>
-                                                                                            <th>Guru</th>
-                                                                                            <th>Ruang Kelas</th>
-                                                                                            <th>Hari</th>
-                                                                                            <th>Jam</th>
+                                                                                            <th>Semester</th>
+                                                                                            <th>Nilai</th>
+                                                                                            <th>Nilai Ketrampilan</th>
+                                                                                            <th>Nilai Pengetahuan</th>
                                                                                         </tr>
                                                                                     </thead>
                                                                                     <tbody>
                                                                                     <?php
                                                                                         $i = 1;
-                                                                                        foreach ($jdwl as $show) {
+                                                                                        foreach ($nli as $show) {
                                                                                             ; ?>
                                                                                         <tr>
                                                                                             <td><?= $i++ ; ?></td>
+                                                                                            <td><?= $show['nama_siswa'] ; ?></td>
                                                                                             <td><?= $show['nama_mapel'] ; ?></td>
-                                                                                            <td><?= $show['nama_guru'] ; ?></td>
-                                                                                            <td><?= $show['nama_kelas'] ; ?></td>
-                                                                                            <td><?= $show['nama_hari'] ; ?></td>
-                                                                                            <td><?= $show['jam'] ; ?></td>
+                                                                                            <td><?= $show['semester'] ; ?></td>
+                                                                                            <td><?= $show['nilai'] ; ?></td>
+                                                                                            <td><?= $show['ketrampilan'] ; ?></td>
+                                                                                            <td><?= $show['pengetahuan'] ; ?></td>
                                                                                         </tr>
                                                                                         <?php
                                                                                         } ?>

@@ -86,4 +86,25 @@ class Siswa extends CI_Controller
 
         $this->load->view("index", $data);
     }
+
+    // Nilai
+    public function nilai()
+    {
+        $id     = $this->session->userdata('id');
+        // Ambil Data berdasr session
+        $cek        = $this->Dashboard_model->viewu('tbl_siswa', 'nama_siswa', $this->session->userdata('name'))->result_array();
+        $data = [
+                'titles'		=> "Dashboard Siswa",
+                'user'	        => $this->Dashboard_model->viewu('tbl_users', 'id', $id)->result_array(),
+                'nli'           => $this->Siswa_model->viewNilai($cek[0]['id_siswa'])->result_array(),
+                // Ambil Nilai Berdasar session name
+                'nilai'         => '',
+                'icons'         => "fa fa-book",
+                'nilai'		    => true,
+                'breadcumb'		=> "Nilai",
+                'view'			=> "v_nilai"
+            ];
+
+        $this->load->view("index", $data);
+    }
 }
