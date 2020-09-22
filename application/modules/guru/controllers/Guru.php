@@ -70,15 +70,87 @@ class Guru extends CI_Controller
     public function jadwal()
     {
         $id     = $this->session->userdata('id');
+        // Ambil Data berdasr session
+        $cek        = $this->Dashboard_model->viewu('tbl_guru', 'nama_guru', $this->session->userdata('name'))->result_array();
         $data	= [
             'titles'	=> "Dashboard Guru",
             'user'	    => $this->Dashboard_model->viewu('tbl_users', 'id', $id)->result_array(),
+            // Ambil Jadwal Berdasar Guru
+            'jdwl'      => $this->Guru_model->viewJadwal($cek[0]['id_guru'])->result_array(),
             'jadwal'    => true,
             'icons'     => "fa fa-home",
             'breadcumb'	=> "Jadwal",
             'view'		=> "v_jadwal"
         ];
         $this->load->view("index", $data);
+    }
+
+    // Nilai
+    public function Nilai()
+    {
+        // Cek Session ID Guru
+        $id     = $this->session->userdata('id');
+
+        // Ambil Data berdasar session
+        $cek        = $this->Dashboard_model->viewu('tbl_guru', 'nama_guru', $this->session->userdata('name'))->result_array();
+        
+        // Cek jadwal Guru dan ambil nilai id mapelnya
+        $jdwl   = $this->Dashboard_model->viewu('tbl_jadwal', 'guru', $cek[0]['id_guru'])->result_array();
+        $data	= [
+            'titles'	=> "Dashboard Guru",
+            'user'	    => $this->Dashboard_model->viewu('tbl_users', 'id', $id)->result_array(),
+            // Ambil Jadwal Berdasar Guru
+            'mapel'     => $this->Dashboard_model->viewJadwal($cek[0]['id_guru'])->result_array(),
+            'nilai'     => true,
+            'icons'     => "fa fa-home",
+            'breadcumb'	=> "Nilai",
+            'view'		=> "v_nilai"
+        ];
+        $this->load->view("index", $data);
+    }
+
+    // Search Berdasar Mata Pelajaran
+    public function cari()
+    {
+        // Cek Session ID Guru
+        $id         = $this->session->userdata('id');
+
+        // Ambil Data berdasar session
+        $cek        = $this->Dashboard_model->viewu('tbl_guru', 'nama_guru', $this->session->userdata('name'))->result_array();
+        
+        $cari       = htmlentities($this->input->post('mapel'));
+
+        $data	= [
+            'titles'	=> "Dashboard Guru",
+            'user'	    => $this->Dashboard_model->viewu('tbl_users', 'id', $id)->result_array(),
+            // Ambil Jadwal Berdasar Guru
+            'mapel'     => $this->Dashboard_model->viewJadwal($cek[0]['id_guru'])->result_array(),
+            'mapjad'    => $this->Guru_model->viewCariMap($cari)->result_array(),
+            'sis'       => $this->Guru_model->viewSis()->result_array(),
+            'nilai'     => true,
+            'icons'     => "fa fa-home",
+            'breadcumb'	=> "Nilai",
+            'view'		=> "v_nilai1"
+        ];
+        $this->load->view("index", $data);
+    }
+
+    public function addNilai()
+    {
+        $input   = [
+            'mapel'         => htmlentities($this->input->post('mapel')),
+            'nisn'          => htmlentities($this->input->post('siswa')),
+            'nilai'         => htmlentities($this->input->post('nilmapel')),
+            'pengetahuan'   => htmlentities($this->input->post('nilpeng')),
+            'semester'      => htmlentities($this->input->post('smstr')),
+            'ketrampilan'   => htmlentities($this->input->post('nilket'))
+        ];
+
+        // Insert data kedalam database
+        if ($this->Dashboard_model->inserts('tbl_nilai', $input)) {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="succes">Data Berhasil di tambahkan !!!</div>');
+        }
+        redirect('guru/nilai', 'refresh');
     }
 
     // Module About

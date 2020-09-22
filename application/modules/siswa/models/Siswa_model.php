@@ -7,7 +7,7 @@ class Siswa_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tbl_jadwal');
-        $this->db->where('kelas', $id);
+        $this->db->where('guru', $id);
         $this->db->join('tbl_mapel', 'tbl_jadwal.mapel=tbl_mapel.id_mapel', 'LEFT');
         $this->db->join('tbl_guru', 'tbl_jadwal.guru=tbl_guru.id_guru', 'LEFT');
         $this->db->join('tbl_hari', 'tbl_jadwal.hari=tbl_hari.id_hari', 'LEFT');

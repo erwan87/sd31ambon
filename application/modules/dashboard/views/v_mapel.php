@@ -165,7 +165,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Modal ADD Kelas Start -->
+                                    <!-- Modal ADD Mata Pelajaran Start -->
                                     <?= form_open("dashboard/addMapel", array("id" => "form-user", "class" => "form-horizontal")) ?>
                                         <div class="modal fade" id="addMapel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="modal">
@@ -193,7 +193,7 @@
                                             </div>
                                         </div>
                                     <?= form_close();?>
-                                    <!-- Modal ADD Kelas End -->
+                                    <!-- Modal ADD Mata Pelajaran End -->
                                 </div>
                             </div>
                         </div>
