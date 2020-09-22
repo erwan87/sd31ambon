@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 21, 2020 at 06:07 PM
+-- Generation Time: Sep 22, 2020 at 10:13 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -213,6 +213,29 @@ INSERT INTO `tbl_mapel` (`id_mapel`, `kode_mapel`, `nama_mapel`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_nilai`
+--
+
+CREATE TABLE `tbl_nilai` (
+  `id` int(11) NOT NULL,
+  `mapel` int(11) NOT NULL,
+  `nisn` int(11) NOT NULL,
+  `nilai` varchar(10) DEFAULT NULL,
+  `pengetahuan` varchar(3) DEFAULT NULL,
+  `semester` enum('ganjil','genap','','') NOT NULL,
+  `ketrampilan` varchar(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_nilai`
+--
+
+INSERT INTO `tbl_nilai` (`id`, `mapel`, `nisn`, `nilai`, `pengetahuan`, `semester`, `ketrampilan`) VALUES
+(1, 1, 3, '81', '81', 'genap', '81');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_pendidikan`
 --
 
@@ -325,12 +348,12 @@ CREATE TABLE `tbl_users` (
 INSERT INTO `tbl_users` (`id`, `name`, `username`, `password`, `photo`, `role_id`) VALUES
 (1, 'Administrator aja', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'default.jpg', 1),
 (2, 'users', 'user', '21232f297a57a5a743894a0e4a801fc3', 'default.jpg', 2),
-(3, 'kiki', '1234567890', '', 'default.jpg', 2),
-(4, 'imanuela', '1234567891', NULL, 'default.jpg', 2),
-(5, 'Risky', '1234567892', NULL, 'default.jpg', 2),
-(6, 'Sarif Mahu. S.Pd.l', '197303092006041012', NULL, 'default.jpg', 3),
-(7, 'Basmiati S.Pd.SD', '198308172008012026', NULL, 'default.jpg', 3),
-(8, 'M. Natsir S.Pd', '198308172008012999', NULL, 'default.jpg', 3);
+(3, 'kiki', '1234567890', 'e807f1fcf82d132f9bb018ca6738a19f', 'default.jpg', 2),
+(4, 'imanuela', '1234567891', '0f7e44a922df352c05c5f73cb40ba115', 'default.jpg', 2),
+(5, 'Risky', '1234567892', 'd893377c9d852e09874125b10a0e4f66', 'default.jpg', 2),
+(6, 'Sarif Mahu. S.Pd.l', '197303092006041012', 'cdd494985958b1622b3a0af59d4daa9c', 'default.jpg', 3),
+(7, 'Basmiati S.Pd.SD', '198308172008012026', '3ec6ce530c37fb80f3fe40f95717dee3', 'default.jpg', 3),
+(8, 'M. Natsir S.Pd', '198308172008012999', '68151793a4fa2cbb097bcd985106594e', 'default.jpg', 3);
 
 --
 -- Indexes for dumped tables
@@ -383,6 +406,12 @@ ALTER TABLE `tbl_kelas`
 --
 ALTER TABLE `tbl_mapel`
   ADD PRIMARY KEY (`id_mapel`);
+
+--
+-- Indexes for table `tbl_nilai`
+--
+ALTER TABLE `tbl_nilai`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tbl_pendidikan`
@@ -465,6 +494,12 @@ ALTER TABLE `tbl_kelas`
 --
 ALTER TABLE `tbl_mapel`
   MODIFY `id_mapel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `tbl_nilai`
+--
+ALTER TABLE `tbl_nilai`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_pendidikan`
